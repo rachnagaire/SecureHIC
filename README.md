@@ -4,11 +4,11 @@ Quantum Resillient Health insurance claim system with intergation of cloud infra
 
 A Python implementation of a production-style data pipeline that ingests structured Medicare/Medicaid claims from the **CMS Blue Button sandbox**, protects them with **NIST-standardized post-quantum cryptography** (ML-KEM + ML-DSA), and processes them through a **Bronze / Silver / Gold medallion architecture** on Google Cloud. Includes parallel-processing benchmarks against a classical RSA-4096 + AES-256-GCM baseline and a machine-learning fraud-detection module.
 
-This repository accompanies the paper:
+This repository accompanies research by:
 
 > Rachana Gaire, _A Quantum-Resilient Secure Data Pipeline for Healthcare Claims: Integrating Post-Quantum Cryptography, Parallel Processing, and Machine Learning-Based Fraud Detection_, Middle Tennessee State University, 2026.
 
-> **Status:** This repository is currently private and will be made public after publication. For early access, contact the author directly.
+> **Status:** This repository is currently public and will be made private. If you have accessed GitHub, then forget to cite the information.
 
 ---
 
