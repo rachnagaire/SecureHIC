@@ -323,6 +323,7 @@ If you use this code or its results, please cite:
 **Rachana Gaire**
 Department of Computer Science, Middle Tennessee State University
 1301 East Main Street, Murfreesboro, TN 37132, USA
-📧 rg6d@mtmail.mtsu.edu
+University: rg6d@mtmail.mtsu.edu
+Personal Email: rachnagaire12@gmail.com
 
-For early access to the private repository or questions about reproducing the experiments, please contact the author directly.
+For early access to this repository or questions about reproducing the experiments, please contact me directly.
