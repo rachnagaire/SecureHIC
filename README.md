@@ -213,6 +213,16 @@ Project-wide constants (paths, model hyperparameters, default worker counts) liv
 
 ---
 
+## Dashboard demo
+
+Run the local SecureHIC claims dashboard with Flask:
+
+```bash
+python src/dashboard.py
+```
+
+Then open `http://127.0.0.1:5000`. The dashboard includes an analytical overview, fictional member profiles, and a claims review queue. Its records and review signals are hard-coded synthetic demo data; the UI is read-only and does not connect to CMS, BigQuery, or a fraud-scoring service. The existing CMS client and pipeline are separate research components and are not yet integrated with this interface. Review signals are not fraud findings or payment decisions. This local demo has no authentication and must not be exposed publicly or used with real patient data.
+
 ## Running the Pipeline
 
 ### Option A — interactive (recommended for a first run)

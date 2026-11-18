@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111a2e">
+    <title>SecureHIC | Claims intelligence</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <script src="{{ url_for('static', filename='dashboard.js') }}" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#dashboard" aria-label="SecureHIC home">
+          <span class="brand-mark">S</span>
+          <span>Secure<span class="brand-light">HIC</span><small>CLAIMS INTELLIGENCE</small></span>
+        </a>
+        <div class="workspace-label">WORKSPACE</div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a class="nav-link active" href="#dashboard" data-view="dashboard"><span class="nav-icon">▦</span>Overview</a>
+          <a class="nav-link" href="#patients" data-view="patients"><span class="nav-icon">♙</span>Patients <span class="nav-count">04</span></a>
+          <a class="nav-link" href="#review" data-view="review"><span class="nav-icon">◷</span>Admin review <span class="nav-count alert-count" id="nav-review-count">03</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="privacy-card">
+            <span class="privacy-icon">◆</span>
+            <div><strong>Local demo workspace</strong><small>No real member data</small></div>
+          </div>
+          <button class="user-menu" type="button" aria-label="Signed-in analyst">
+            <span class="avatar avatar-analyst">JD</span>
+            <span class="user-copy"><strong>Jordan Davis</strong><small>Claims analyst</small></span>
+            <span class="more">···</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <div class="breadcrumbs"><span>SecureHIC</span><span class="crumb-sep">/</span><strong id="breadcrumb-current">Overview</strong></div>
+          <div class="topbar-actions">
+            <span class="demo-chip"><i></i> DEMO ENVIRONMENT · SYNTHETIC DATA</span>
+            <button class="icon-button" type="button" aria-label="Notifications">♧<span class="notification-dot"></span></button>
+            <span class="avatar avatar-analyst top-avatar">JD</span>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="demo-notice"><span>ⓘ</span><p><strong>Demonstration only.</strong> All member and claim records on this screen are fictional. Review signals are illustrative, not fraud findings.</p></div>
+
+          <section class="view active" id="view-dashboard" aria-labelledby="dashboard-title">
+            <div class="page-heading">
+              <div><p class="eyebrow">MONDAY, MARCH 24, 2025</p><h1 id="dashboard-title">Claims overview</h1><p class="subheading">A clear view of claims activity and items that may need a closer look.</p></div>
+              <button class="button button-quiet" id="refresh-button" type="button"><span>↻</span> Refresh data</button>
+            </div>
+
+            <div class="metric-grid">
+              <article class="metric-card"><div class="metric-top"><span>Claims processed</span><span class="metric-icon blue">▤</span></div><div class="metric-value" id="metric-processed">—</div><div class="metric-foot"><span class="trend up">↗ 8.2%</span><span>vs. last month</span></div></article>
+              <article class="metric-card"><div class="metric-top"><span>Members monitored</span><span class="metric-icon teal">♙</span></div><div class="metric-value" id="metric-members">—</div><div class="metric-foot"><span class="metric-note">Active members</span></div></article>
+              <article class="metric-card"><div class="metric-top"><span>Items for review</span><span class="metric-icon amber">◷</span></div><div class="metric-value" id="metric-review">—</div><div class="metric-foot"><span class="metric-note">Signals are not findings</span></div></article>
+              <article class="metric-card"><div class="metric-top"><span>Potential exposure</span><span class="metric-icon violet">$</span></div><div class="metric-value" id="metric-exposure">—</div><div class="metric-foot"><span class="metric-note">Claimed amount · illustrative</span></div></article>
+            </div>
+
+            <div class="analytics-grid">
+              <article class="panel activity-panel">
+                <div class="panel-heading"><div><h2>Claims activity</h2><p>Processed claims over the last 12 months</p></div><button class="period-select" type="button">Last 12 months <span>⌄</span></button></div>
+                <div class="chart-summary"><strong>2,777</strong><span>total claims</span><span class="chart-change">↗ 12.6% <small>vs. prior period</small></span></div>
+                <div class="line-chart-wrap"><canvas id="activity-chart" aria-label="Monthly claims activity chart" role="img"></canvas><div class="chart-axis" id="chart-axis"></div></div>
+              </article>
+              <article class="panel category-panel">
+                <div class="panel-heading"><div><h2>Review signals</h2><p>By service category</p></div><button class="more-button" type="button" aria-label="More options">···</button></div>
+                <div class="donut-wrap"><canvas id="category-chart" aria-label="Review signals by service category chart" role="img"></canvas><div class="donut-center"><strong>52</strong><span>signals</span></div></div>
+                <div class="legend" id="category-legend"></div>
+              </article>
+            </div>
+
+            <article class="panel table-panel">
+              <div class="panel-heading table-heading"><div><h2>Priority review</h2><p>Claims with illustrative signals for analyst review</p></div><a class="text-link" href="#review" data-view="review">View review queue <span>→</span></a></div>
+              <div class="table-scroll"><table><thead><tr><th>CLAIM</th><th>MEMBER</th><th>SERVICE</th><th>SUBMITTED</th><th>REVIEW SIGNAL</th><th>STATUS</th></tr></thead><tbody id="priority-claims"></tbody></table></div>
+            </article>
+          </section>
+
+          <section class="view" id="view-patients" aria-labelledby="patients-title">
+            <div class="page-heading">
+              <div><p class="eyebrow">MEMBER DIRECTORY</p><h1 id="patients-title">Patients</h1><p class="subheading">Member profiles and recent claim activity.</p></div>
+              <label class="search-box"><span>⌕</span><input id="patient-search" type="search" placeholder="Search members..." aria-label="Search members"></label>
+            </div>
+            <div class="patient-layout">
+              <article class="panel directory-panel"><div class="panel-heading"><div><h2>All members</h2><p id="patient-count-label">— members</p></div></div><div class="member-list" id="member-list"></div></article>
+              <article class="panel profile-panel" id="profile-panel"><div class="profile-loading">Select a member to view their profile.</div></article>
+            </div>
+          </section>
+
+          <section class="view" id="view-review" aria-labelledby="review-title">
+            <div class="page-heading">
+              <div><p class="eyebrow">ADMIN · CLAIMS INTEGRITY</p><h1 id="review-title">Suspected claim review</h1><p class="subheading">Triage unusual patterns with context. A signal is not proof of fraud.</p></div>
+              <span class="queue-open"><i></i><span id="queue-count">—</span> open items</span>
+            </div>
+            <div class="review-layout">
+              <article class="panel queue-panel">
+                <div class="queue-toolbar"><label class="search-box"><span>⌕</span><input id="claim-search" type="search" placeholder="Search claims..." aria-label="Search claims"></label><select id="status-filter" aria-label="Filter by status"><option value="">All statuses</option><option value="Needs review">Needs review</option><option value="In review">In review</option><option value="Reviewed">Reviewed</option></select></div>
+                <div class="table-scroll"><table><thead><tr><th>CLAIM</th><th>MEMBER</th><th>SUBMITTED</th><th>PRIORITY</th><th>STATUS</th></tr></thead><tbody id="review-claims"></tbody></table></div>
+              </article>
+              <aside class="panel claim-detail" id="claim-detail"><div class="detail-empty"><span>◷</span><strong>Select a claim</strong><p>Review the claim context and illustrative signals here.</p></div></aside>
+            </div>
+          </section>
+          <footer class="footer"><span>SecureHIC <span class="footer-sep">·</span> Claims intelligence workspace</span><span>Demo data only <span class="footer-sep">·</span> Not for clinical or payment decisions</span></footer>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
